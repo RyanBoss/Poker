@@ -4,3 +4,6 @@ D:\Git\code\Poker\Poker\obj\Debug\Poker.csprojAssemblyReference.cache
 D:\Git\code\Poker\Poker\obj\Debug\Poker.csproj.CoreCompileInputs.cache
 D:\Git\code\Poker\Poker\obj\Debug\Poker.dll
 D:\Git\code\Poker\Poker\obj\Debug\Poker.pdb
+D:\Git\code\Poker\Poker\bin\Debug\Poker.Data.dll
+D:\Git\code\Poker\Poker\bin\Debug\Poker.Data.pdb
+D:\Git\code\Poker\Poker\obj\Debug\Poker.csproj.CopyComplete

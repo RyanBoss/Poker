@@ -10,7 +10,7 @@ namespace Poker.Data
   {
     public string Name { get; set; }
     public int Id { get; set; }
-    public IEnumerable<PokerCard> Hand { get; set; }
+    public PokerHand Hand { get; set; }
 
   }
 }

@@ -1,36 +1,21 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 
-namespace PokerTest
+namespace Poker.Testing
 {
-
-    public interface IAdd
+  [TestFixture]
+  public class TestBase
+  {
+    protected IPokerGame _pokerGame;
+    [OneTimeSetUp]
+    public void Init()
     {
-        int Add(int a, int b);
-    }
-    public class Add : IAdd
-    {
-        int IAdd.Add(int a, int b)
-        {
-            return a + b;
-        }
+      _pokerGame = new PokerGame();
     }
 
-    [TestFixture]
-    public class TestBase
-    {
-        [Test]
-        public void ShouldAddTwoNumbers()
-        {
-            IAdd something = new Add();
-
-            var expectedResult = something.Add(1, 1);
-
-            Assert.AreEqual(expectedResult, 2);
-        }
-    }
+  }
 }

@@ -1,0 +1,6 @@
+D:\Git\code\Poker\Poker.Data\bin\Debug\Poker.Data.dll
+D:\Git\code\Poker\Poker.Data\bin\Debug\Poker.Data.pdb
+D:\Git\code\Poker\Poker.Data\obj\Debug\Poker.Data.csprojAssemblyReference.cache
+D:\Git\code\Poker\Poker.Data\obj\Debug\Poker.Data.csproj.CoreCompileInputs.cache
+D:\Git\code\Poker\Poker.Data\obj\Debug\Poker.Data.dll
+D:\Git\code\Poker\Poker.Data\obj\Debug\Poker.Data.pdb

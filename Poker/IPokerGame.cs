@@ -10,5 +10,11 @@ namespace Poker
   public interface IPokerGame
   {
     IEnumerable<PokerPlayer> FindPokerWinners(IEnumerable<PokerPlayer> players);
+    IEnumerable<PokerPlayer> GetPlayersWithHighestCard(IEnumerable<PokerPlayer> players);
+    PokerCard FindHighestCard(IEnumerable<PokerCard> cards);
+
+    PokerHand SetPlayerHand(PokerHand hand);
+    IEnumerable<PokerPlayer> GetWinnersFromWinningHandValue(IEnumerable<PokerPlayer> players);
+    IEnumerable<PokerPlayer> GetWinningPlayersBasedOnNextHighestCard(IEnumerable<PokerPlayer> players);
   }
 }
