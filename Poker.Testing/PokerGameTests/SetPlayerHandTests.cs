@@ -22,7 +22,7 @@ namespace Poker.Testing.PokerGameTests
           .With(x => x.Suit = PokerCardSuit.Club).Build()
       };
 
-      var winningHand = _pokerGame.SetPlayerHand(hand);
+      var winningHand = _pokerGame.SetPlayerHandWinningData(hand);
 
       Assert.IsTrue(winningHand.WinningType == HandWinningType.Flush);
     }
@@ -40,7 +40,7 @@ namespace Poker.Testing.PokerGameTests
             .With(x => x.Value = PokerCardValue.King).Build()
       };
 
-      var winningHand = _pokerGame.SetPlayerHand(hand);
+      var winningHand = _pokerGame.SetPlayerHandWinningData(hand);
 
       Assert.IsTrue(winningHand.WinningType == HandWinningType.ThreeOfAKind);
     }
@@ -63,7 +63,7 @@ namespace Poker.Testing.PokerGameTests
             .Build()
       };
 
-      var winningHand = _pokerGame.SetPlayerHand(hand);
+      var winningHand = _pokerGame.SetPlayerHandWinningData(hand);
 
       Assert.IsTrue(winningHand.WinningType == HandWinningType.OnePair);
     }
@@ -89,7 +89,7 @@ namespace Poker.Testing.PokerGameTests
             .Build()
       };
 
-      var winningHand = _pokerGame.SetPlayerHand(hand);
+      var winningHand = _pokerGame.SetPlayerHandWinningData(hand);
 
       Assert.IsTrue(winningHand.WinningType == HandWinningType.HighCard);
     }

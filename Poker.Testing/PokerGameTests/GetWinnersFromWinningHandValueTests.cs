@@ -54,7 +54,7 @@ namespace Poker.Testing.PokerGameTests
         .Build();
 
       players.AddRange(winners);
-      var gameWinners = _pokerGame.GetWinnersFromWinningHandValue(players).ToList();
+      var gameWinners = _pokerGame.GetWinnersFromWinningHandInfo(players).ToList();
       Assert.IsTrue(winners.Count() == 1);
       Assert.IsTrue(gameWinners[0].Id == winners[0].Id);
     }
@@ -72,7 +72,7 @@ namespace Poker.Testing.PokerGameTests
         .Build();
 
       players.AddRange(winners);
-      var gameWinners = _pokerGame.GetWinnersFromWinningHandValue(players).ToList();
+      var gameWinners = _pokerGame.GetWinnersFromWinningHandInfo(players).ToList();
 
       Assert.IsTrue(gameWinners.Count() == 1);
       Assert.IsTrue(gameWinners[0].Id == winners[0].Id);
@@ -87,7 +87,7 @@ namespace Poker.Testing.PokerGameTests
           .With(x => x.Hand = new PokerHand() { Cards = _winningHand, WinningType = HandWinningType.ThreeOfAKind, WinningValue = PokerCardValue.Ace })
         .Build();
 
-      var winners = _pokerGame.GetWinnersFromWinningHandValue(players);
+      var winners = _pokerGame.GetWinnersFromWinningHandInfo(players);
 
       Assert.IsTrue(winners.Count() == 5);
     }

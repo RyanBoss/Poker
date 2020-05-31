@@ -14,7 +14,7 @@ namespace Poker
     {
       foreach(var player in players)
       {
-        player.Hand = SetPlayerHand(player.Hand);
+        player.Hand = SetPlayerHandWinningData(player.Hand);
       }
 
       var playersGroupedByWinning = players.OrderByDescending(x => x.Hand.WinningType).GroupBy(x => x.Hand.WinningType);
@@ -35,14 +35,14 @@ namespace Poker
           case HandWinningType.Flush:
             return GetWinningPlayersBasedOnNextHighestCard(winningPlayers);
           case HandWinningType.ThreeOfAKind:
-            return GetWinnersFromWinningHandValue(winningPlayers);
+            return GetWinnersFromWinningHandInfo(winningPlayers);
           case HandWinningType.OnePair:
-              return GetWinnersFromWinningHandValue(winningPlayers);
+              return GetWinnersFromWinningHandInfo(winningPlayers);
           default: return GetWinningPlayersBasedOnNextHighestCard(winningPlayers);
         }
       }
     }
-    public PokerHand SetPlayerHand(PokerHand hand)
+    public PokerHand SetPlayerHandWinningData(PokerHand hand)
     {
       var suitCounts = hand.Cards.GroupBy(x => x.Suit);
 
@@ -77,28 +77,30 @@ namespace Poker
 
     //Determine who has the highest winning hand value (three of a kind, 2 pair, etc)
     //if theres a tie, next highest card wins
-    public IEnumerable<PokerPlayer> GetWinnersFromWinningHandValue(IEnumerable<PokerPlayer> players)
+    public IEnumerable<PokerPlayer> GetWinnersFromWinningHandInfo(IEnumerable<PokerPlayer> players)
     {
       var winnersGroupByValue = players.OrderByDescending(x => x.Hand.WinningValue).GroupBy(x => x.Hand.WinningValue);
 
-      var highestPairWinners = winnersGroupByValue.First();
-      if (highestPairWinners.Count() == 1)
+      var highestWinners = winnersGroupByValue.First();
+      if (highestWinners.Count() == 1)
       {
-        return highestPairWinners;
+        return highestWinners;
       }
       else
       {
-        foreach (var player in highestPairWinners)
+        //assumption: the class doesnt need to return the hand card data intact, probably not the best assumption.
+        // Couple of ways to resolve this going forward, can talk about it in more depth if need be.
+        foreach (var player in highestWinners)
         {
           player.Hand.Cards = player.Hand.Cards.Where(x => x.Value != player.Hand.WinningValue).ToList();
         }
 
         //ASSUMPTION: Since we are only checking three of a kind, technically in this assingment three of a kind is highest.
-        //Logic being used skips ALL where the winningvalue matches the cards value, but if a player had 4 of the same, it would techinically be three of a kind
+        //Logic being used skips ALL where the winningvalue matches the cards value, but if a player had 4 of the same card it would be classified as three of a kind as the winning hand
         //Assumption here is that in a normal poker program this case would not occur at this level because the winning hand type would be set differently and be valued higher
 
         //fallback to highest card after the three of a kind
-        return GetWinningPlayersBasedOnNextHighestCard(highestPairWinners);
+        return GetWinningPlayersBasedOnNextHighestCard(highestWinners);
       }
     }
 
@@ -113,6 +115,9 @@ namespace Poker
         return playersWithHighCard;
       } else
       {
+
+        //same assumption as above: the class doesnt need to return the hand card data intact, probably not the best assumption.
+        // Couple of ways to resolve this going forward, can talk about it in more depth if need be.
         foreach (var player in playersWithHighCard)
         {
           var removedHand = player.Hand.Cards.OrderByDescending(x => x.Value).ToList();
